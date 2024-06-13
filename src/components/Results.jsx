@@ -9,16 +9,21 @@ const Results = () => {
   }, []);
 
   const getAllUpdatedResults = async () => {
-    const res = await fetch("https://neet-orchestrator.100xdevs.com/total");
-    const data = await res.json();
-    console.log(data);
-    setData(data);
+    try{
+
+      const res = await fetch("https://neet-orchestrator.100xdevs.com/total");
+      const data = await res.json();
+      console.log(data);
+      setData(data);
+    } catch(err){
+      console.log(err);
+    }
   };
 
   if (data === null) return <ShimmerResults />;
 
   return (
-    <div className="w-full pt-20 flex flex-col bg-[#373A40]">
+    <div className="w-full pt-20 pb-20 flex flex-col bg-[#373A40]">
       <h1 className="text-center font-bold text-2xl text-white">
         Total Results : {data?.len}
       </h1>
@@ -26,7 +31,7 @@ const Results = () => {
       <div className="w-full mt-10 flex flex-col items-center justify-center text-black ">
         <table>
           <thead>
-            <tr className="h-[40px] text-white bg-zinc-700">
+            <tr className="h-[40px] text-white bg-teal-700">
               <th>AIR</th>
               <th>Name</th>
               <th>Marks</th>
